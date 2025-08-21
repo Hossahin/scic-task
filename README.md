@@ -34,3 +34,10 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+
+MONGODB_URI=youruri
+GOOGLE_CLIENT_ID=your client id
+GOOGLE_CLIENT_SECRET=your client GOOGLE_CLIENT_SECRET
+NEXTAUTH_SECRET=HvRCT8idQAWeb7TZ
+DB_NAME=SCIC_TASK
