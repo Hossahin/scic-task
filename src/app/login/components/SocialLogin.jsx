@@ -29,7 +29,7 @@ export default function SocialLogin() {
     <div>
       <button
         onClick={() => handleGoogleLogin("google")}
-        className="w-full border border-gray-300 p-3 sm:p-4 rounded flex items-center justify-center gap-2 hover:bg-gray-100 transition text-sm sm:text-base"
+        className="cursor-pointer w-full border border-gray-300 p-3 sm:p-4 rounded flex items-center justify-center gap-2 hover:bg-gray-100 transition text-sm sm:text-base"
       >
         <FaGoogle className="" />
         Login with Google

@@ -6,8 +6,12 @@ import { FaCloudUploadAlt } from "react-icons/fa";
 import { AiOutlineClose } from "react-icons/ai";
 import { addProduct } from "@/app/actions/auth/addproduct";
 import Swal from "sweetalert2";
+import Loading from "./loading";
+import { useRouter } from "next/navigation";
 
 export default function AddProductForm() {
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -76,12 +80,14 @@ export default function AddProductForm() {
       const formData = new FormData();
       formData.append("image", image);
       try {
+        setLoading(true);
         const response = await axios.post(
           `https://api.imgbb.com/1/upload?key=9683ba99474011560739e696292fa9e0`,
           formData
         );
         data.image = response.data.data.url;
       } catch (error) {
+        setLoading(false);
         console.error("Image upload failed:", error);
         alert("Image upload failed. Please try again.");
         return;
@@ -89,9 +95,11 @@ export default function AddProductForm() {
     }
 
     try {
+      setLoading(true);
       const result = await addProduct(data);
 
       if (result.acknowledged) {
+        router.push("/products");
         Swal.fire({
           title: "Success!",
           text: "Product added successfully!",
@@ -99,6 +107,7 @@ export default function AddProductForm() {
           confirmButtonText: "OK",
           timer: 1500,
         });
+        setLoading(false);
       } else {
         Swal.fire({
           title: "Error!",
@@ -107,6 +116,7 @@ export default function AddProductForm() {
           confirmButtonText: "OK",
           timer: 1500,
         });
+        setLoading(false);
       }
     } catch (error) {
       Swal.fire({
@@ -116,8 +126,11 @@ export default function AddProductForm() {
         confirmButtonText: "OK",
         timer: 1500,
       });
+      setLoading(false);
     }
   };
+
+  if (loading) return <Loading />;
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
@@ -275,8 +288,11 @@ export default function AddProductForm() {
       <div>
         <button
           type="submit"
-          className="w-full px-6 py-3 cursor-pointer text-white bg-blue-600 border border-blue-600 rounded-lg 
-                         hover:bg-blue-50 hover:text-blue-600 hover:border-blue-600 transition-colors duration-200 shadow-sm"
+          disabled={loading}
+          className={`w-full px-6 py-3 cursor-pointer text-white bg-blue-600 border border-blue-600 rounded-lg 
+                         hover:bg-blue-50 hover:text-blue-600 hover:border-blue-600 transition-colors duration-200 shadow-sm ${
+                           loading ? "opacity-50 cursor-not-allowed" : ""
+                         }`}
         >
           Add Product
         </button>

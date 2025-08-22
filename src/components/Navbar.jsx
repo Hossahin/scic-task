@@ -1,13 +1,12 @@
 "use client";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 function Navbar() {
   const { data: session, status } = useSession();
-
-  console.log("User session:", session);
-  console.log("Auth status:", status);
+  const router = useRouter();
 
   const Navlinks = (
     <>
@@ -80,8 +79,11 @@ function Navbar() {
 
                 {/* Logout button */}
                 <button
-                  onClick={() => signOut()}
-                  className="px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-blue-600 rounded-lg 
+                  onClick={() => {
+                    signOut();
+                    router.push("/login");
+                  }}
+                  className="cursor-pointer px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-blue-600 rounded-lg 
              hover:bg-blue-50 hover:text-blue-600 hover:border-blue-600 transition-colors duration-200 shadow-sm"
                 >
                   Logout
@@ -95,7 +97,7 @@ function Navbar() {
               {/* Filled button - Login */}
               <Link
                 href="/login"
-                className="px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-blue-600 rounded-lg 
+                className="cursor-pointer px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-blue-600 rounded-lg 
                hover:bg-blue-50 hover:text-blue-600 hover:border-blue-600 transition-colors duration-200 shadow-sm"
               >
                 Login
@@ -104,7 +106,7 @@ function Navbar() {
               {/* Outline button - Register */}
               <Link
                 href="/register"
-                className="px-4 py-2 text-sm font-medium text-blue-600 bg-transparent border border-blue-600 rounded-lg 
+                className="cursor-pointer px-4 py-2 text-sm font-medium text-blue-600 bg-transparent border border-blue-600 rounded-lg 
                hover:bg-blue-50 hover:text-blue-600 transition-colors duration-200 shadow-sm"
               >
                 Register
