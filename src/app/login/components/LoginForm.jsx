@@ -28,7 +28,7 @@ export default function LoginForm() {
           showConfirmButton: false,
           timer: 1500,
         });
-        router.push("/");
+        router.push("/products");
         form.reset();
         // Handle successful login
       } else {

@@ -11,22 +11,13 @@ function Navbar() {
   const Navlinks = (
     <>
       <li>
-        <Link href={""}>Home</Link>
+        <Link href={"/"}>Home</Link>
       </li>
       <li>
-        <Link href={""}>About</Link>
+        <Link href={"/dashboard/add-product"}>Add Product</Link>
       </li>
       <li>
-        <Link href={""}>Careers</Link>
-      </li>
-      <li>
-        <Link href={""}>History</Link>
-      </li>
-      <li>
-        <Link href={""}>Services</Link>
-      </li>
-      <li>
-        <Link href={""}>Blog</Link>
+        <Link href={"/products"}>Products</Link>
       </li>
     </>
   );
@@ -58,7 +49,9 @@ function Navbar() {
             {Navlinks}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">daisyUI</a>
+        <Link href={"/"} className="btn btn-ghost text-xl">
+          Task
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{Navlinks}</ul>

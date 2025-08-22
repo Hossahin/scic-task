@@ -8,8 +8,11 @@ import { addProduct } from "@/app/actions/auth/addproduct";
 import Swal from "sweetalert2";
 import Loading from "./loading";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 export default function AddProductForm() {
+  const session = useSession();
+  console.log(session);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const {
@@ -282,6 +285,57 @@ export default function AddProductForm() {
             {errors.description.message}
           </p>
         )}
+      </div>
+
+      <div className="">
+        <label
+          htmlFor="ownername"
+          className="block text-sm font-medium text-gray-700 mb-1"
+        >
+          Product Owner Name
+        </label>
+        <input
+          type="text"
+          id="ownername"
+          value={session?.data?.user?.name || ""}
+          readOnly
+          {...register("ownername")}
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-100 text-gray-600 cursor-not-allowed"
+        />
+      </div>
+
+      <div className="">
+        <label
+          htmlFor="owneremail"
+          className="block text-sm font-medium text-gray-700 mb-1"
+        >
+          Product Owner Email
+        </label>
+        <input
+          type="email"
+          id="owneremail"
+          value={session?.data?.user?.email || ""}
+          readOnly
+          {...register("owneremail")}
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-100 text-gray-600 cursor-not-allowed"
+        />
+      </div>
+
+      <div className="">
+        <label
+          htmlFor="ownerimage"
+          className="block text-sm font-medium text-gray-700 mb-1"
+        >
+          Product Owner Image
+        </label>
+        <input
+          type="url"
+          id="ownerimage"
+          value={session?.data?.user?.image || ""}
+          readOnly
+          {...register("ownerimage")}
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-100 text-gray-600 cursor-not-allowed"
+        />
       </div>
 
       {/* Submit Button - Full Width */}

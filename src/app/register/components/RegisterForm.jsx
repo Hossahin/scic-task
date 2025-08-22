@@ -32,7 +32,7 @@ export default function RegisterForm() {
           text: "Thank you for registering!",
           timer: 1500,
         });
-        router.push("/");
+        router.push("/products");
         setLoading(false);
       } else {
         Swal.fire({

@@ -21,7 +21,7 @@ export default function SocialLogin() {
         showConfirmButton: false,
         timer: 1500,
       });
-      router.push("/");
+      router.push("/products");
     }
   }, [session, router]);
 
