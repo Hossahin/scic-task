@@ -12,7 +12,7 @@ import { useSession } from "next-auth/react";
 
 export default function AddProductForm() {
   const session = useSession();
-  console.log(session);
+
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const {
@@ -233,9 +233,7 @@ export default function AddProductForm() {
           >
             <option value="">Select category</option>
             <option value="Clothing">Clothing</option>
-            <option value="Electronics">Electronics</option>
-            <option value="Accessories">Accessories</option>
-            <option value="Books">Books</option>
+            <option value="shirt">T-Shirt</option>
           </select>
           {errors.category && (
             <p className="text-red-500 text-sm mt-1">

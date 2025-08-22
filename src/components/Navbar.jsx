@@ -1,28 +1,55 @@
 "use client";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React from "react";
 
 function Navbar() {
   const { data: session, status } = useSession();
   const router = useRouter();
+  const pathname = usePathname();
 
   const Navlinks = (
     <>
       <li>
-        <Link href={"/"}>Home</Link>
+        <Link
+          href="/"
+          className={`px-3 py-2 rounded ${
+            pathname === "/" ? "text-blue-600 font-bold" : "text-gray-700"
+          } hover:text-blue-700 hover:bg-blue-100 border border-transparent hover:border-blue-700 transition-colors`}
+        >
+          Home
+        </Link>
       </li>
       <li>
-        <Link href={"/dashboard/add-product"}>Add Product</Link>
+        <Link
+          href="/dashboard/add-product"
+          className={`px-3 py-2 rounded ${
+            pathname === "/dashboard/add-product"
+              ? "text-blue-600 font-bold"
+              : "text-gray-700"
+          } hover:text-blue-700 hover:bg-blue-100 border border-transparent hover:border-blue-700 transition-colors`}
+        >
+          Add Product
+        </Link>
       </li>
       <li>
-        <Link href={"/products"}>Products</Link>
+        <Link
+          href="/products"
+          className={`px-3 py-2 rounded ${
+            pathname === "/products"
+              ? "text-blue-600 font-bold"
+              : "text-gray-700"
+          } hover:text-blue-700 hover:bg-blue-100 border border-transparent hover:border-blue-700 transition-colors`}
+        >
+          Products
+        </Link>
       </li>
     </>
   );
+
   return (
-    <div className="navbar p-0 fixed top-0 left-0 right-0 z-50 shadow w-11/12 mx-auto bg-base-100">
+    <div className="navbar p-0 fixed top-0 left-0 right-0 z-50 shadow bg-base-100">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
