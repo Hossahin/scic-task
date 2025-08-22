@@ -1,11 +1,15 @@
 "use client";
 import { signOut, useSession } from "next-auth/react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import React from "react";
 
 function Navbar() {
   const { data: session, status } = useSession();
+
+  console.log("session", session?.user?.image);
+
   const router = useRouter();
   const pathname = usePathname();
 
@@ -87,15 +91,18 @@ function Navbar() {
         {status == "authenticated" ? (
           <>
             {
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2">
                 {/* User name */}
-                <span
-                  title={session?.user?.name}
-                  className="px-4 py-2 text-sm font-medium text-gray-800 border border-gray-300 rounded-lg 
-               hover:border-gray-400 hover:bg-gray-50 transition-colors duration-200"
-                >
-                  {session?.user?.name}
-                </span>
+
+                <Image
+                  src={session?.user?.image}
+                  alt="user"
+                  objectFit="cover"
+                  priority
+                  className="rounded-full border-2 border-blue-700"
+                  height={50}
+                  width={50}
+                />
 
                 {/* Logout button */}
                 <button
