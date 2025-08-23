@@ -35,9 +35,7 @@ export default async function ProductHighlights() {
               <h2 className="text-xl font-semibold text-gray-900 truncate">
                 {product.name}
               </h2>
-              <p className="text-gray-600 text-sm line-clamp-2">
-                {product.description}
-              </p>
+             
               <p className="text-blue-600 font-bold text-lg">
                 ${product.price}
               </p>
